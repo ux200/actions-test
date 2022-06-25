@@ -2,7 +2,7 @@ name: ActionsTest # GitHub Actionsにつける名前。任意で良い。
 
 on:
   schedule:
-    - cron: '10 9 * * *' # cronで定期実行
+    - cron: '25 10 * * *' # cronで定期実行
 
 jobs:
   build:
@@ -26,3 +26,12 @@ jobs:
       - name: Run main.py # Pythonファイルの実行
         run: |
           python main.py
+            
+        - name: Commit and Push # 実行した結果をプッシュして変更をレポジトリに反映
+        run: |
+          git config user.name "YOUR NAME"
+          git config user.email "YOUR MAIL"
+          git add .
+          git commit -m "Commit Message"
+          git pull
+          git push origin master
